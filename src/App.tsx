@@ -1,12 +1,15 @@
 import React from 'react';
-import {SafeAreaView, Text} from 'react-native';
+import {StatusBar} from 'react-native';
+import {UserContextProvider} from './Context/User';
+import Navigator from './Screens/Navigator';
 
 interface Props {}
 const App = ({}: Props) => {
   return (
-    <SafeAreaView>
-      <Text>TEST</Text>
-    </SafeAreaView>
+    <UserContextProvider>
+      <StatusBar barStyle="light-content" />
+      <Navigator />
+    </UserContextProvider>
   );
 };
 
