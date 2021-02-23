@@ -4,6 +4,8 @@ import {UserContext} from '~/Context/User';
 import Loading from './Loading';
 import {createStackNavigator} from '@react-navigation/stack';
 import Login from './Login';
+import MovieHome from './MovieHome';
+import MovieDetail from './MovieDetail';
 
 const Stack = createStackNavigator();
 
@@ -23,14 +25,43 @@ const LoginNavigator = () => {
     </Stack.Navigator>
   );
 };
-// const MovieNavigator = () => {
-//   return (
-//     <Stack.Navigator>
-//       <Stack.Screen name="MovieHome" component={MovieHome} />
-//       <Stack.Screen name="MovieDetail" component={MovieDetail} />
-//     </Stack.Navigator>
-//   );
-// };
+const MovieNavigator = () => {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name="MovieHome"
+        component={MovieHome}
+        options={{
+          title: 'MOVIEAPP',
+          headerTintColor: '#E70915',
+          headerStyle: {
+            backgroundColor: '#141414',
+            borderBottomWidth: 0,
+          },
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+        }}
+      />
+      <Stack.Screen
+        name="MovieDetail"
+        component={MovieDetail}
+        options={{
+          title: 'MOVIEAPP',
+          headerTintColor: '#E70915',
+          headerStyle: {
+            backgroundColor: '#141414',
+            borderBottomWidth: 0,
+          },
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+          headerBackTitleVisible: false,
+        }}
+      />
+    </Stack.Navigator>
+  );
+};
 
 export default () => {
   const {isLoading, userInfo} = useContext<IUserContext>(UserContext);
@@ -40,7 +71,7 @@ export default () => {
   }
   return (
     <NavigationContainer>
-      <LoginNavigator />
+      {userInfo ? <MovieNavigator /> : <LoginNavigator />}
     </NavigationContainer>
   );
 };
